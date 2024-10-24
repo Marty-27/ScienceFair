@@ -19,7 +19,7 @@ public class PaintBucket : MonoBehaviour
     private Quaternion pouringRotation;
 
     private ColorMixing colorMixing;
-
+    private AudioSource audioSource;
     private void Start()
     {
         this.originalPosition = this.transform.position;
@@ -30,6 +30,7 @@ public class PaintBucket : MonoBehaviour
         pouringRotation = Quaternion.Euler(-90f, 0f, 0f);
 
         this.colorMixing = bigBucketTransform.GetComponent<ColorMixing>();
+        this.audioSource = this.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -51,6 +52,7 @@ public class PaintBucket : MonoBehaviour
             var particleRenderer = pouringEffect.GetComponent<ParticleSystemRenderer>();
             particleRenderer.material.color = this.bucketColor;
             pouringEffect.Play();
+            this.audioSource.Play();
         }
         else
         {
@@ -66,6 +68,7 @@ public class PaintBucket : MonoBehaviour
             }
 
             pourDuration = 0f;
+            this.audioSource.Stop();
         }
     }
     private IEnumerator MoveToPosition(Vector3 targetPosition, Quaternion targetRotation)

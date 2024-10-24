@@ -43,11 +43,6 @@ public class PaintBucket : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
-    {
-        this.OnClick();
-    }
-
     public void OnClick()
     {
         if (!isPouring)

@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - fork
-  - drumstick
+  - Wall
+  - Earth
+  - Apple
+  - BigBucket
+  - Planet
+  - Bucket
   layers:
   - Default
   - TransparentFX

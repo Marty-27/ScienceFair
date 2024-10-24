@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class MixController : MonoBehaviour
 {
     public ColorMixing colorMixing;
+    public bool isPouring = false;
+    public PaintBucket pouringPaintBucket = null;
 
     public void Reset()
     {
@@ -16,6 +18,7 @@ public class MixController : MonoBehaviour
             PaintBucket paintBucket = bucket.GetComponent<PaintBucket>();
             paintBucket.Reset();
         }
+        isPouring = false;
     }
     public void Quit()
     {

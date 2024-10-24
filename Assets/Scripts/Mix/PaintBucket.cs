@@ -7,6 +7,7 @@ public class PaintBucket : MonoBehaviour
     public Color bucketColor;
     public float PourRate = 1.0f;
     public ParticleSystem pouringEffect;
+    public MixController mixController;
 
     private bool isPouring = false;
     private float pourDuration = 0f;
@@ -42,10 +43,21 @@ public class PaintBucket : MonoBehaviour
         }
     }
 
+    private void OnMouseDown()
+    {
+        this.OnClick();
+    }
+
     public void OnClick()
     {
         if (!isPouring)
         {
+            if(mixController.isPouring)
+            {
+                mixController.pouringPaintBucket.Reset();
+            }
+            mixController.pouringPaintBucket = this;
+            mixController.isPouring = true;
             isPouring = true;
 
             StartCoroutine(MoveToPosition(pouringPosition, pouringRotation));
@@ -95,6 +107,7 @@ public class PaintBucket : MonoBehaviour
     {
         isPouring = false;
         pouringEffect.Stop();
+        this.audioSource.Stop();
 
         StartCoroutine(MoveToPosition(originalPosition, originalRotation));
 
